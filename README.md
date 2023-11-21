@@ -1,2 +1,49 @@
-# TrajectoryPS4
-Repo pour la simulation d'un robot déplaçable avec une manette de ps4
+# ARECE Trajectory
+
+## Contrôle d'un véhicule simulé avec une manette de PS4
+
+### Premier pas
+Pour prendre en main ROS2 il a été mis en place cette petite interface graphique. Cette application sert à comprendre le fonctionnement des noeuds ROS.
+Nous avons ici 2 Noeuds le premier est un service qui va recevoir 2 entiers d'un client puis lui retourner la somme de ces 2 entiers.
+Le deuxième noeud est une interface graphique qui va permettre à l'utilisateur de rentrer 2 entiers, et, qui après avoir envoyé ces 2 entiers à l'autre noeuds récupère la somme et affiche le calcul en console.
+
+### Installation
+
+1. [Installer ROS](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+2. Installer l'application
+
+Pour installer l'aplication aller à la racine du dossier.
+
+Installer les différentes dépendances :
+
+```bash
+rosdep install -i --from-path src --rosdistro humble -y
+```
+
+Compiler l'application :
+```bash
+colcon build --packages-select py_srvcli
+```
+
+Enfin finir l'installation :
+```bash
+source install/setup.bash
+```
+En cas d'utilisation de `zsh` remplacer `setup.bash` par `setup.zsh`
+
+Vous devriez maintenant avoir en plus du dossier `src` trois nouveaux dossiers : `build`, `install`, et `log`
+
+### fonctionnement 
+
+Maintenant que l'installation est faite, vous pouvez lancer l'application.
+
+Dans un premier temps lancer le service :
+```bash
+ros2 run py_srvcli service
+```
+Ouvrez un nouveau terminal et lancer le client
+```bash
+ros2 run py_srvcli client
+```
+
+
