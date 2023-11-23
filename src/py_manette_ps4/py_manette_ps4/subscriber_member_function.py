@@ -3,20 +3,45 @@ from rclpy.node import Node
 
 from std_msgs.msg import String
 
+from std_msgs.msg import Bool
+from std_msgs.msg import Int32
 
 class MinimalSubscriber(Node):
 
     def __init__(self):
         super().__init__('minimal_subscriber')
-        self.subscription = self.create_subscription(
-            String,
-            'topic',
-            self.listener_callback,
+        self.subscription_accelerate = self.create_subscription(
+            Bool,
+            'accelerate',
+            self.listener_accelerate,
             10)
-        self.subscription  # prevent unused variable warning
+        self.subscription_accelerate  # prevent unused variable warning
+        
+        self.subscription_descelerate = self.create_subscription(
+            Bool,
+            'descelerate',
+            self.listener_descelerate,
+            10
+        )
+        self.subscription_descelerate
 
-    def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.data)
+        self.subscription_joycon =self.create_subscription(
+            Int32,
+            'joycon',
+            self.listener_joycon,
+            10
+        )
+        self.subscription_joycon
+
+    def listener_accelerate(self, msg):
+        self.get_logger().info('Acceleration "%s"' % msg.data)
+    
+    def listener_descelerate(self, msg):
+        self.get_logger().info('Desceleration "%s"' % msg.data)
+    
+    def listener_joycon(self, msg):
+        self.get_logger().info('Joycon "%s"' % msg.data)
+    
 
 
 

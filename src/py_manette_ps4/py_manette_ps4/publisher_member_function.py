@@ -2,6 +2,8 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
+from std_msgs.msg import Bool
+from std_msgs.msg import Int32
 import evdev
 
 
@@ -9,19 +11,39 @@ class MinimalPublisher(Node):
 
     def __init__(self):
         super().__init__('minimal_publisher')
-        self.publisher_ = self.create_publisher(String, 'topic', 10)
+        self.publisher_1 = self.create_publisher(Bool, 'accelerate', 10)
+        self.publisher_2 = self.create_publisher(Bool, 'descelerate', 10)
+        self.publisher_3 = self.create_publisher(Int32, 'joycon', 10)
         
 
-    def send_data(self,entree):
-        msg = String()
-        msg.data = '%s' % entree
-        self.publisher_.publish(msg)
+    def send_accelerate(self,accelerate):
+        msg = Bool()
+
+        msg.data=accelerate
+        self.publisher_1.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
+    
+    def send_descelerate(self,descelerate):
+        msg = Bool()
+
+        msg.data=descelerate
+        self.publisher_2.publish(msg)
+        self.get_logger().info('Publisging: "%s"'% msg.data)
+    
+    def send_joycon(self,entierJoycon):
+        msg = Int32()
+
+        msg.data=entierJoycon
+
+        self.publisher_3.publish(msg)
+        self.get_logger().info('Publishing "%s"'% msg.data)
         
 
 
 def main(args=None):
     rclpy.init(args=args)
+    
+
 
     minimal_publisher = MinimalPublisher()
 
@@ -46,19 +68,19 @@ def main(args=None):
             key_event = evdev.categorize(event)
             if key_event.keystate == key_event.key_down:
                 if key_event.keycode[0] == 'BTN_A' :
-                    minimal_publisher.send_data("ACCELERATE_TRUE")
+                    minimal_publisher.send_accelerate(True)
                 elif key_event.keycode[0] == 'BTN_B':
-                    minimal_publisher.send_data("DESCELERATE_TRUE")
+                    minimal_publisher.send_accelerate(True)
             elif key_event.keystate == key_event.key_up:
                 if key_event.keycode[0] == 'BTN_A' :
-                    minimal_publisher.send_data("ACCELERATE_FALSE")
+                    minimal_publisher.send_descelerate(False)
                 elif key_event.keycode[0] == 'BTN_B':
-                    minimal_publisher.send_data("DESCELERATE_FALSE")
+                    minimal_publisher.send_descelerate(False)
                 
         elif event.type == evdev.ecodes.EV_ABS:
             abs_event = evdev.categorize(event)
             if abs_event.event.code == evdev.ecodes.ABS_X:
-                minimal_publisher.send_data(abs_event.event.value)
+                minimal_publisher.send_joycon(abs_event.event.value)
     
     
 
