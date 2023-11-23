@@ -22,7 +22,7 @@ rosdep install -i --from-path src --rosdistro humble -y
 
 Compiler l'application :
 ```bash
-colcon build --packages-select py_srvcli
+colcon build --packages-select py_manette_ps4
 ```
 
 Enfin finir l'installation :
@@ -39,11 +39,11 @@ Maintenant que l'installation est faite, vous pouvez lancer l'application.
 
 Dans un premier temps lancer le service :
 ```bash
-ros2 run py_srvcli service
+ros2 run py_manette_ps4 talker
 ```
 Ouvrez un nouveau terminal et lancer le client
 ```bash
-ros2 run py_srvcli client
+ros2 run py_manette_ps4 listener
 ```
 
 
