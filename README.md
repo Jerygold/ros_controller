@@ -10,7 +10,14 @@ Le deuxième noeud est une interface graphique qui va permettre à l'utilisateur
 ### Installation
 
 1. [Installer ROS](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
-2. Installer l'application
+2. Installer les packages python nécessaire
+3. Installer l'application
+
+Commencer par installer la bibliothèque `evdev` qui permet de gérer les entrées et sorties des périphériques en python.
+
+```bash
+pip install evdev
+```
 
 Pour installer l'aplication aller à la racine du dossier.
 
