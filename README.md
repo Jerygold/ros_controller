@@ -13,6 +13,13 @@ Le deuxième noeud est une interface graphique qui va permettre à l'utilisateur
 2. Installer les packages python nécessaire
 3. Installer l'application
 
+#### Installation automatique
+Installer tous les packages en éxecutant le fichier `installPackages.sh`
+
+```bash
+./installPackages.sh
+```
+#### Installation manuelle
 Commencer par installer la bibliothèque `evdev` qui permet de gérer les entrées et sorties des périphériques en python.
 
 ```bash
