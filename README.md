@@ -36,7 +36,7 @@ rosdep install -i --from-path src --rosdistro humble -y
 
 Compiler l'application :
 ```bash
-colcon build --packages-select py_manette_ps4
+colcon build --packages-select py_manette_ps4 ps4_messages
 ```
 
 Enfin finir l'installation :
