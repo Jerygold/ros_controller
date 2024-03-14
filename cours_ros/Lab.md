@@ -8,3 +8,6 @@
 ![image](./images/importer.png)
 Sélectionner l'image `ubuntu-ros.ova` dans votre dossier téléchargement
 
+5. Après l'importation terminée démarrez la machine virtuelle ubuntu-ros
+
+6. Pour vous connecter entrer le mot de passe `admin` sur la session adminRos
