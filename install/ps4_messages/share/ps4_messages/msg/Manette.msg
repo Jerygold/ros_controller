@@ -1,0 +1,3 @@
+bool is_accelerating 
+bool is_desclerating
+int32 joycon_value
